@@ -8,6 +8,8 @@ import Featured from '../../components/featured/Featured'
 import Table from '../../components/table/Table'
 import {  onSnapshot, collection, query, } from "firebase/firestore";
 import db from '../../db';
+
+import { getDatabase, ref, onValue} from "firebase/database";
 import LoadingSpin from "react-loading-spin";
 const Home = () => {
     const [user,setuser] = useState([]);
@@ -16,29 +18,43 @@ const Home = () => {
     useEffect(() => {
         async function fetchUserAPI() {
             console.log('Fetchdata');
-            const q = query(collection(db, "Users"))
-          const unsub = onSnapshot(q, (querySnapshot) => {
-            console.log("Data", querySnapshot.docs.map(d => d.data()));
-            setuser(querySnapshot.docs.map(d => d.data()));
+          // //   const q = query(collection(db, "Users"))
+          // // const unsub = onSnapshot(q, (querySnapshot) => {
+          // //   console.log("Data", querySnapshot.docs.map(d => d.data()));
+          // //   setuser(querySnapshot.docs.map(d => d.data()));
+          //   serLoader(true)
+          // });
+      const db = getDatabase();
+    const starCountRef = ref(db, 'prestamodeUser/');
+    onValue( (snapshot) => {
+      const data = snapshot.val();
+      // updateStarCount(postElement, data);
+      console.log("snapshotsnapshot")
+      data.map(ls=>{
+      const aa = Object.values(ls)
+      console.log("data in use effect",aa)
+      })
+      
+        setuser(data);
             serLoader(true)
-          });
+    });
         }
-        async function fetchOrderAPI() {
-            console.log('Fetchdata');
-            const q = query(collection(db, "cart"))
-          const unsub = onSnapshot(q, (querySnapshot) => {
-            console.log("Data", querySnapshot.docs.map(d => d.data()));
-            setcart(querySnapshot.docs.map(d => d.data()));
-          });
-        }
+        // async function fetchOrderAPI() {
+        //     console.log('Fetchdata');
+        //     const q = query(collection(db, "cart"))
+        //   const unsub = onSnapshot(q, (querySnapshot) => {
+        //     console.log("Data", querySnapshot.docs.map(d => d.data()));
+        //     setcart(querySnapshot.docs.map(d => d.data()));
+        //   });
+        // }
     
         fetchUserAPI()
-        fetchOrderAPI()
+        // fetchOrderAPI()
       }, [])
     return (
         <div>
             {
-Loader===false?
+Loader===true?
 <div className="loader">
 <LoadingSpin size={50} />
 </div>
@@ -47,6 +63,7 @@ Loader===false?
 <Sidebar />
 <div className='homeContainer'>
     <Navbar />
+    {console.log("user in render",user)}
     <div className='widgets'>
         <Widgets type="user" value={user.length}/>
         <Widgets type="order" value={cart.length}/>

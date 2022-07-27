@@ -32,19 +32,21 @@
 
 
 
-import { getDatabase } from "@firebase/database";
 import { initializeApp } from "firebase/app";
-import "firebase/auth"
-import "firebase/database"
+import { getDatabase} from "firebase/database";
+// import "firebase/auth"
+// import firebase from "firebase/database"
+// import ShopKipperUsers from "./page/shopkipper/shopkipperuser";
 const firebaseConfig = {
   apiKey: "AIzaSyCDh__FZDsAe83Lb-K8kw6UJ1poFD1KQnk",
   authDomain: "pretanode.firebaseapp.com",
   projectId: "pretanode",
   storageBucket: "pretanode.appspot.com",
   messagingSenderId: "212141452853",
+  databaseURL: "https://pretanode-default-rtdb.firebaseio.com/",
 };
-// firebase.initilizeApp(firebaseCongfig)
-// const database =getDatabase(app);
-const Firebaseapp = initializeApp(firebaseConfig);
-const db = getDatabase(Firebaseapp);
+// firebase.initilizeApp(firebaseConfig)
+// const database =getDatabase(ShopKipperUsers);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 export default db;

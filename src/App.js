@@ -5,6 +5,7 @@ import Login from "./page/login/Login";
 import List from "./page/list/List";
 import SinglePage from "./page/single/Single";
 import NewPage from "./page/new/New";
+import { getDatabase, ref, onValue} from "firebase/database";
 import AddData from "./page/Add Product/plan";
 import ByShip from "./page/Add Product/ship";
 import Private from "./page/Add Product/private";
@@ -12,7 +13,7 @@ import BoatProduct from "./page/showProduct/boatProduct";
 import ShowProducts from "./page/showProduct/showProduct";
 import PrivateSale from "./page/showProduct/privateSale";
 import Address from "./page/address/address";
-import { getDatabase, ref, set } from "firebase/database";
+// import { getDatabase, ref, set } from "firebase/database";
 import { productInputs, userInputs } from "./formSource";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -24,15 +25,25 @@ import firebase from "./db";
 const App = () => {
   const { darkMode } = useContext(DarkModeContext);
 
+  // useEffect(() => {
+  //   const prestamodedeRef = db.ref("prestamodeUser");
+  //   const newGamesRef = prestamodedeRef.push();
+  //   newGamesRef.set({
+
+
+  //   })
+
+  // }, [])
   useEffect(() => {
-    const prestamodedeRef = db.ref("prestamodeUser");
-    const newGamesRef = prestamodedeRef.push();
-    newGamesRef.set({
-
-
-    })
-
+    const db = getDatabase();
+    const starCountRef = ref(db, 'prestamodeUser/');
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      // updateStarCount(postElement, data);
+      console.log("data in use effect",data)
+    });
   }, [])
+  
   const login = async () => {
     console.log("Auth", auth)
     createUserWithEmailAndPassword(auth, 'abc987@gmail.com', '123456')
@@ -81,13 +92,12 @@ const App = () => {
 
             <Route path='PrivateSaleProduct' element={<PrivateSale />} />
             <Route path='Private' element={<Private />} />
+            
 
             <Route path='Address' element={<Address />} />
           </Route>
         </Routes>
       </BrowserRouter>
-
-
     </div>
   );
 };

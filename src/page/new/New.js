@@ -6,6 +6,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import "./new.scss";
+import ShopKipperUsers from "../shopkipper/shopkipperuser";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -75,6 +76,7 @@ export default function NewPage() {
             </TabPanel>
 
           </Box>
+          <ShopKipperUsers/>
         </div>
       </div>
     </div>
