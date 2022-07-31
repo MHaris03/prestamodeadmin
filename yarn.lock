@@ -1463,19 +1463,7 @@
     "@firebase/app-types" "0.7.0"
     "@firebase/util" "1.6.3"
 
-"@firebase/database@0.13.3":
-  version "0.13.3"
-  resolved "https://registry.npmjs.org/@firebase/database/-/database-0.13.3.tgz"
-  integrity sha512-ZE+QJqQUaCTZiIzGq3RJLo64HRMtbdaEwyDhfZyPEzMJV4kyLsw3cHdEHVCtBmdasTvwtpO2YRFmd4AXAoKtNw==
-  dependencies:
-    "@firebase/auth-interop-types" "0.1.6"
-    "@firebase/component" "0.5.17"
-    "@firebase/logger" "0.3.3"
-    "@firebase/util" "1.6.3"
-    faye-websocket "0.11.4"
-    tslib "^2.1.0"
-
-"@firebase/database@^0.13.3":
+"@firebase/database@0.13.3", "@firebase/database@^0.13.3":
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.13.3.tgz#cf9acc03434c89e0bcb8b8ab3a6d2a70e342b8c5"
   integrity sha512-ZE+QJqQUaCTZiIzGq3RJLo64HRMtbdaEwyDhfZyPEzMJV4kyLsw3cHdEHVCtBmdasTvwtpO2YRFmd4AXAoKtNw==

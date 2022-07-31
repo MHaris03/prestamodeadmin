@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style/dark.scss";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
@@ -35,13 +35,8 @@ const App = () => {
 
   // }, [])
   useEffect(() => {
-    const db = getDatabase();
-    const starCountRef = ref(db, 'prestamodeUser/');
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      // updateStarCount(postElement, data);
-      console.log("data in use effect",data)
-    });
+    
+
   }, [])
   
   const login = async () => {
